@@ -1,0 +1,28 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Lab1.1Ver/1.0.0": {
+        "runtime": {
+          "Lab1.1Ver.dll": {}
+        },
+        "resources": {
+          "ru/Lab1.1Ver.resources.dll": {
+            "locale": "ru"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Lab1.1Ver/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

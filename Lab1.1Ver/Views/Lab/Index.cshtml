@@ -1,0 +1,70 @@
+﻿@model Lab1._1Ver.Models.SeriesSumModel
+
+<h2>Вычисление суммы ряда</h2>
+
+<form asp-action="Calculate" method="post">
+    <div>
+        <label asp-for="X"></label>
+        <input asp-for="X" />
+        <span asp-validation-for="X" style="color:red"></span>
+    </div>
+
+    <div>
+        <label asp-for="Epsilon"></label>
+        <input asp-for="Epsilon" />
+        <span asp-validation-for="Epsilon" style="color:red"></span>
+    </div>
+
+    <button type="submit">Рассчитать</button>
+</form>
+
+@if (Model != null && Model.Result.HasValue)
+{
+    <div>
+        <h3>Результат: @Model.Result</h3>
+        <p>Количество использованных членов ряда: @Model.TermsUsed</p>
+    </div>
+
+    <div>
+        <h3>График суммы ряда</h3>
+        <canvas id="sumChart" width="400" height="200"></canvas>
+
+        <script>
+            var ctx = document.getElementById('sumChart').getContext('2d');
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: @Html.Raw(Json.Serialize(ViewBag.XValues)), // n (порядковый номер члена ряда)
+                    datasets: [{
+                        label: 'Сумма ряда',
+                        data: @Html.Raw(Json.Serialize(ViewBag.YValues)), // Сумма ряда
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2,
+                        fill: false
+                    }]
+                },
+                options: {
+                    scales: {
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Количество членов ряда (n)'
+                            }
+                        },
+                        y: {
+                            title: {
+                                display: true,
+                                text: 'Сумма ряда'
+                            }
+                        }
+                    }
+                }
+            });
+        </script>
+    </div>
+}
+
+<div>
+    <h3>Формула ряда:</h3>
+    <img src="~/images/formula.png" alt="Формула" />
+</div>
